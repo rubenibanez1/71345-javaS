@@ -52,10 +52,19 @@ alert(salida);
 /* } */
 
 // == igualdad
-let edad = 15;
 
-if (edad >=18) {
+/* let edad = 20;
+/* //SIN ALERTA */
+/* if (edad >=18) {
     console.log("Eres mayor de edad");
 } else {
     console.log("Eres menor de edad");
-}
+} */
+//con ALERTA
+/* if (edad >=18) {
+    alert("Eres mayor de edad");
+} else {
+    alert("Eres menor de edad");
+} */
+
+
