@@ -1,3 +1,6 @@
+//*TAREA ENTREGADA 1ER ENTREGA
+
+
 let producto1 = parseFloat(prompt("Ingrese el importe del producto #1")); /* parseInt convierte en numero ingresado a entero */
 let producto2 = parseFloat(prompt("Ingrese el importe del producto #2"));//Em prompt guarda el valor ingresado como tipo de dato string
 let cupon = prompt("Ingrese el Código del Cupon");
