@@ -1,3 +1,4 @@
+
 //!Declaro una funcion con parametros
 
 function nombreCompleto(a1, a2, a3) { //segun los parametros que salen son los que en un principio ingrese, en este caso a1 y a2, si hubiera puesto 3 en -> "nombreCompleto tengo que poner 3 para que no me de error"
