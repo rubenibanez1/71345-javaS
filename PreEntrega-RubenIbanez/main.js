@@ -1,86 +1,58 @@
-//ARRAYS
-const Pizzas = [
-    {id:1, nombre:"Pizza con muzzarella, precio:1800"},
-    {id:2, nombre:"Pizza con jamón y queso, precio:1800"},
-    {id:3, nombre:"Pizza la inolvidable(a elección gustos), precio:1800"},
-]; // MI CATALOGO ORIGINAL
+//?Método <> FUNCIONES
+let texto = prompt("Ingrese su Nombre: ")//le pido su nombre
 
-
-//!  ******       ALTA Y BAJA DE PRODUCTOS    *********
-class Productos {
-    constructor(productos) { //VARIABLE
-        this.items = productos;
-    }
-
-    agregarProducto(nombreP, precioP) { //METODO
-        const producto = {id:this.generarId(), nombre:nombreP, precio:precioP}; //CREAR NUEVO OBJETO PRODUCTO
-        this.items.push(producto);
-        console.log("Producto agregado!")
-    }
-
-    buscarProducto(id) { //METODO
-        return this.items.find(item => item.id == id) //find devuelve el primer elemento que coincida
-    }   //return me da el detalle completo 
-
-    obtenerProductos() { //METODO
-        return this.items;
-    }
-
-    listarProductos(){
-        let salida = "";
-
-        for (const producto of this.items) {
-            salida += '${producto.id} + ${producto.nombre} + ${producto.precio}\n';    //+= me mantiene el valor anterior y el de ahora
-        }
-        alert(salida)
-    }
-
-    TotalProductos() {
-        return this.items.length;
-    }
-    /* generarId() { //SIRVE ESTE METODO SIEMPRE Y CUANDO NO SE ELIMINEN PRODUCTOS
-        return this.items.length + 1; //CANTIDAD DE PRODUCTO DE MI ARRAY MAS 1
-        
-    } */
-    generarId(){
-        let max = 0;
-
-        this.items.forEach(item => {
-            if(item.id > max) {
-                max = item.id;
-            }
-        });
-
-        return max + 1; 
-    }
-
-    eliminarProducto(id) {
-        //let pos = this.items.findIndex(item => item.id == id); //Busque la posicion del elemento a eliminar en el array
-        /* //1 - Eliminar con metodo splice
-        this.items.splice(pos, 1); //elimino el elemnto en la posicion "pos"
-        console.log("Se elimino el producto #" + id); */
-
-        //2 - Eliminar con metodo filter - 
-        this.items = this.items.filter(item => item.id != id); //eliminar el elemnto de la posicion "pos"
-        console.log("Se eliminó el producto: #" + id);
-    }
+function formatearTexto(texto) {
+    return text.trim().toUpperCase(); //me saca los espacios y me lo pone en mayscula
 }
 
 
-//! SE CREA UNA NUEVA CLASE PRODUCTO
-const catalogo = new Productos (Pizzas)
+
+//!Crear una clase persona(Defino las propiedades de la clase que serian las variables)
+class Persona {
+    constructor(dato1, dato2, dato3){
+    this.nombre = dato1;
+    this.edad = dato2;
+    this.calle = dato3;
+    }
+    //?Defino los metodos de la clase(que serian funciones)
+    saludar = () => { 
+        console.log("Hola soy " + this.nombre)
+    }
+    pasarMayus = () => {
+        this.nombre = this.nombre.toUpperCase();
+    }
+}
+const persona1 = new Persona("Gabriel", 25, "malvin 4527")
+console.log(persona1);
+persona1.saludar();
 
 
+//?     ARRAY - 
+//!Definir una ARRAY
+const gustos = ["Pizza con muzzarella", "Pizza con chedar", "Pizza completa para dos"];
 
-let nombreProducto = prompt("Ingresar el nombre el producto:");
-let precioProducto = parseFloat(prompt("Ingresar el precio del producto:"));
-catalogo.agregarProducto(nombreProducto, precioProducto);
-console.log(catalogo.obtenerProductos());
-console.log(catalogo.eliminarProducto(2));
-console.log(catalogo.obtenerProductos());
 
-//Listar los productos
-catalogo.listarProductos();
+gustos.push("Pizza a la napolitana");//ver si funciona
+console.log(gustos);//er si funciona
 
-//PARA SABER CUANTOS PRODUCTOS TENGO EN MI CATALOGO
-console.log ("Total producto: " + catalogo.TotalProductos());
+let bebida1 = { id:1, nombre:"Coca-cola", Precio:250};
+const bebidas = [bebida1, {id:2, nombre: "pepsi", precio:275}];
+bebidas.push({id:3, nombre:"Spray", precio:169});
+console.log(bebidas);
+
+//?Crear un constructor a partir de un objeto //construir una estructura de informacion 
+const pizzas = {id:1, nombre:"pizzas con muzarella", precio:400};
+
+function crearPromo(objeto) { //this es el objeto que esta creando
+    this.idProducto = objeto.id; //nombre de la propiedad
+    this.nombreProducto = objeto.nombre.toUpperCase();//nombre de la propiedad
+    this.preciosSinIva = objeto.precio;//nombre de la propiedad
+    this.precioConIva = this.preciosSinIva * 1.22;//nombre de la propiedad
+}
+
+const pizzas1= new crearPromo(pizzas);
+const pizzas2= new crearPromo({id:2, nombre:"pizzas cuatro quesos", precio:400});
+console.log(pizzas1);
+console.log(pizzas2);
+
+
