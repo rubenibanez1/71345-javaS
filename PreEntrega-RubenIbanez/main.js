@@ -4,7 +4,7 @@ let texto = prompt("Ingrese su Nombre: ")//le pido su nombre
 function formatearTexto(texto) {
     return text.trim().toUpperCase(); //me saca los espacios y me lo pone en mayscula
 }
-
+alert("Bienvenido/a " + " " + texto + ", " + "un gusto saludarte!!");
 
 
 //!Crear una clase persona(Defino las propiedades de la clase que serian las variables)
@@ -51,8 +51,16 @@ function crearPromo(objeto) { //this es el objeto que esta creando
 }
 
 const pizzas1= new crearPromo(pizzas);
-const pizzas2= new crearPromo({id:2, nombre:"pizzas cuatro quesos", precio:400});
+const pizzas2= new crearPromo({id:2, nombre:"pizzas cuatro quesos", precio:400}); //Agrego un objeto
 console.log(pizzas1);
 console.log(pizzas2);
 
 
+//-------------------------------------------
+const gusto = [
+    {id:1, nombre: "pizza con muzza", precio: 240},
+    {id:2, nombre: "pizza con chedar", precio: 320},
+    {id:3 ,nombre: "pizza con 5 gustos a elección", precio: 380},
+]
+const gustoIVA = gusto.map(item =>({idgustos:item.id, nombregusto:item.nombre.toUpperCase(), preciogusto:item.precio * 1.21})); //paso el nombre a mayuscula tabién
+console.log(gustoIVA);
