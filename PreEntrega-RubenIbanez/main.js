@@ -6,7 +6,7 @@ const productos = [
     { id: 4, nombre: "pizza con a la napolitana", precio: "580", imagen: "../img/Imagen de pizza.jpg" }
 ]
 
-function renderProductos(productos) {
+function renderProductos(productos) { //Recorre el array(constant) de producto y lo que hacer nutrir al html que generamos abajo con toda esa informacion
     let contenidoHtml = "";
 
     for (const producto of productos) {
@@ -20,7 +20,7 @@ function renderProductos(productos) {
             </div>
         </div>`;
     }
-    document.getElementById("contenido").innerHTML = contenidoHtml;
+    document.getElementById("contenido").innerHTML = contenidoHtml; //innerhtml nutrimos con el array y el html
 }
 
 /* Funcion para los botones */
