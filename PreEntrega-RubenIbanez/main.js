@@ -26,18 +26,35 @@ function renderProductos(productos) { //Recorre el array(constant) de producto y
 /* Funcion para los botones */
 function agregarProducto(id) {
     const producto = productos.find(item => item.id == id);
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const carrito = cargarCarrito();
     carrito.push(producto);
     localStorage.setItem("carrito", JSON.stringify(carrito));
     console.log("El producto se agrego correctamente");
-    totalProductos();
+    renderBotonCarrito();
 }
 
+function renderBotonCarrito() {
+    let total = totalProductos();
+    document.getElementById("totalCarrito").innerHTML = total;
+}
+
+
 function totalProductos() {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    document.getElementById("totalCarrito").innerHTML = carrito.length;
+    const carrito = cargarCarrito();
+    return carrito.length; //devuelve la cantidad de elementos
+}
+
+function cargarCarrito() {
+    return JSON.parse(localStorage.getItem("carrito")) || [];
+}
+
+//! PARA VACIAR EL CARRITO
+function vaciarCarrito() {
+    localStorage.removeItem("carrito");
+    renderCarrito();
+    renderBotonCarrito();
 }
 
 
 renderProductos(productos);
-totalProductos();
+renderBotonCarrito();
