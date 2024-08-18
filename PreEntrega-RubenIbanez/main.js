@@ -1,3 +1,19 @@
+function renderProductos() { //Recorre el array(constant) de producto y lo que hacer nutrir al html que generamos abajo con toda esa informacion
+    let contenidoHtml = "";
+
+    for (const producto of productos) {
+        contenidoHtml += ` <div class="col-md-3 img-fluid ">
+            <div class="card border-0">
+                <img src="images/${producto.imagen}" class= "card-img-top" width="340" height="340"  alt="${producto.nombre}">
+                <div class="card-body text-center">
+                    <p class="card-text">${producto.nombre}<br><span class="text-danger">$${producto.precio}</span></p>
+                    <p class="card-text"><button class="btn btn-dark rounded-pill" onclick="agregarProducto(${producto.id});">Agregar (+)</button></p>
+                </div>
+            </div>
+        </div>`;
+    }
+    document.getElementById("contenido").innerHTML = contenidoHtml; //innerhtml nutrimos con el array y el html
+}
 /*  Seccion producto y creacion de cartas */
 const productos = [
     { id: 1, nombre: "pizza con muzzarella", precio: "240", imagen: "../img/pizzaConMuzza.jpg" },
@@ -6,7 +22,7 @@ const productos = [
     { id: 4, nombre: "pizza con a la napolitana", precio: "580", imagen: "../img/Imagen de pizza.jpg" }
 ]
 
-function renderProductos(productos) { //Recorre el array(constant) de producto y lo que hacer nutrir al html que generamos abajo con toda esa informacion
+function renderProductos() { //Recorre el array(constant) de producto y lo que hacer nutrir al html que generamos abajo con toda esa informacion
     let contenidoHtml = "";
 
     for (const producto of productos) {
@@ -28,9 +44,18 @@ function agregarProducto(id) {
     const producto = productos.find(item => item.id == id);
     const carrito = cargarCarrito();
     carrito.push(producto);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    guardarCarrito (carrito);
     console.log("El producto se agrego correctamente");
     renderBotonCarrito();
+}
+
+function eliminarProducto(id) {
+    const carrito = cargarCarrito();
+    const carritoActualizado = carrito.filter(item => item.id != id);
+    guardarCarrito (carritoActualizado);
+    renderBotonCarrito();
+    renderCarrito();
+    console.log ("El producto #" + id + "a sido Eliminado");
 }
 
 function renderBotonCarrito() {
@@ -48,6 +73,10 @@ function cargarCarrito() {
     return JSON.parse(localStorage.getItem("carrito")) || [];
 }
 
+function guardarCarrito (carrito) {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
 //! PARA VACIAR EL CARRITO
 function vaciarCarrito() {
     localStorage.removeItem("carrito");
@@ -55,6 +84,7 @@ function vaciarCarrito() {
     renderBotonCarrito();
 }
 
-
-renderProductos(productos);
+renderProductos();
 renderBotonCarrito();
+
+
