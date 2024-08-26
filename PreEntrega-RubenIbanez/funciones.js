@@ -65,3 +65,54 @@ function cargarProducto() {
 function guardarProducto(id) { //Nos va a permitir entrar al producto y ver el detalle
     localStorage.setItem("producto", JSON.stringify(id));
 }
+//          FORMULARIO DE REGISTRO
+function validarFormulario() {
+    let campoEmail = document.getElementById("email").value;
+    let campoClave = document.getElementById("clave").value;
+
+    if (campoEmail == "") {
+        Swal.fire({
+            title: "ERROR",
+            text: "Complete el campo Email",
+            icon: "error"
+        });
+        return false;
+    }
+
+    if (campoClave == "") {
+        Swal.fire({
+            title: "ERROR",
+            text: "Complete el campo Clave",
+            icon: "error"
+        });
+        return false;
+    }
+}
+document.getElementById("btnForm").addEventListener("click",validarFormulario);
+
+
+
+//                  Cargar nuevos Productos
+function cargarProductoNuevo() {
+    let titulo = document.getElementById("titulo").value;
+    let imagen = document.getElementById("imagen").value;
+    let precio = document.getElementById("precio").value;
+    let descripcion = document.getElementById("descripcion").value;
+
+    fetch(`https://fakestoreapi.com/products`,{
+        method:"POST",
+        body:JSON.stringify(
+            {
+                title:titulo,
+                price:precio,
+                description:descripcion,
+                image:imagen,
+                
+            }
+        )
+    })
+    .then(res=>res.json())
+    .then(json=>console.log(json))
+}
+
+document.getElementById("btnFormulario").addEventListener("click", cargarProductoNuevo);
