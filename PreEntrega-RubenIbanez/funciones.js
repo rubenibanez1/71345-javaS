@@ -75,7 +75,7 @@ function validarFormulario() {
             title: "ERROR",
             text: "Complete el campo Email",
             duration: 3000,
-            icon: "error",
+            icon: "ERROR",
             style: {
                 color :"orange",
                 blackground : "black",
@@ -84,6 +84,7 @@ function validarFormulario() {
         }).showToast();
         return false;
     }    
+
     if (campoClave == "") {
         Toastify({
             title: "ERROR",
@@ -101,30 +102,30 @@ function validarFormulario() {
     Toastify({
         text: "Deseas guardar los datos para proximas compras?",
         duration: 3000,
-        icon: "error",
+        icon: "top",
         style: {
             color :"black",
             blackground : "white",
         },
-        onClick: function(){}
-            guardarDatos()
+        onClick: function(){
+            guardarDatos();
             Toastify({
                 text: "Tus datos fueron almacenados correctamente",
                 duration: 3000,
-                icon: "error",
+                gravity: "top",
                 style: {
                     color :"orange",
                     blackground : "black",
                 },
-                /* onClick: function(){} */
+                onClick: function(){}
             }).showToast();
-            return false;
+        }
     }).showToast();
 
 }
 function guardarDatos() {
-    let campoEmail = document.getElementById("email").value;
-    let campoEmail = document.getElementById("clave").value;
+    /* let campoEmail = document.getElementById("email").value;
+    let campoEmail = document.getElementById("clave").value; */
     localStorage.setItem("datosUsuario", JSON.stringify({email:campoEmail, clave:campoClave}));
 }
 document.getElementById("btnForm").addEventListener("click",validarFormulario);
