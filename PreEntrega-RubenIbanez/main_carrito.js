@@ -11,7 +11,7 @@ function renderCarrito() {
 
         for (const producto of carrito) {
             contenidoHTML += ` <tr>
-            <td><img src="../img${producto.imagen}" alt="${producto.nombre}" width="50" height="50" ></td>
+            <td><img src="imag/${producto.imagen}" alt="${producto.nombre}" width="50" height="50" ></td>
             <td class="align midlle">${producto.nombre}</td>
             <td class="text-center align-middle"><span class="text-danger">$${producto.precio} UYU </span></td>
             <td class="text-end aling-middle"><button class="btn btn-danger btn-sm" onclick="eliminarProducto(${producto.id});">Eliminar <i class="bi bi-trash"></i></button></td>

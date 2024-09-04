@@ -71,22 +71,61 @@ function validarFormulario() {
     let campoClave = document.getElementById("clave").value;
 
     if (campoEmail == "") {
-        Swal.fire({
+        Toastify({
             title: "ERROR",
             text: "Complete el campo Email",
-            icon: "error"
-        });
+            duration: 3000,
+            icon: "error",
+            style: {
+                color :"orange",
+                blackground : "black",
+            },
+            /* onClick: function(){} */
+        }).showToast();
         return false;
-    }
-
+    }    
     if (campoClave == "") {
-        Swal.fire({
+        Toastify({
             title: "ERROR",
-            text: "Complete el campo Clave",
-            icon: "error"
-        });
+            text: "Complete el campo Email",
+            duration: 3000,
+            icon: "error",
+            style: {
+                color :"orange",
+                blackground : "black",
+            },
+            /* onClick: function(){} */
+        }).showToast();
         return false;
     }
+    Toastify({
+        text: "Deseas guardar los datos para proximas compras?",
+        duration: 3000,
+        icon: "error",
+        style: {
+            color :"black",
+            blackground : "white",
+        },
+        onClick: function(){}
+            guardarDatos()
+            Toastify({
+                text: "Tus datos fueron almacenados correctamente",
+                duration: 3000,
+                icon: "error",
+                style: {
+                    color :"orange",
+                    blackground : "black",
+                },
+                /* onClick: function(){} */
+            }).showToast();
+            return false;
+    }).showToast();
+
+}
+function guardarDatos() {
+    let campoEmail = document.getElementById("email").value;
+    let campoEmail = document.getElementById("clave").value;
+    localStorage.setItem("datosUsuario", JSON.stringify({email:campoEmail, clave:campoClave}));
 }
 document.getElementById("btnForm").addEventListener("click",validarFormulario);
 
@@ -113,6 +152,36 @@ function cargarProductoNuevo() {
     })
     .then(res=>res.json())
     .then(json=>console.log(json))
+    
 }
 
 document.getElementById("btnFormulario").addEventListener("click", cargarProductoNuevo);
+
+
+
+
+
+/* //          FORMULARIO DE REGISTRO
+function validarFormulario() {
+    let campoEmail = document.getElementById("email").value;
+    let campoClave = document.getElementById("clave").value;
+
+    if (campoEmail == "") {
+        Swal.fire({
+            title: "ERROR",
+            text: "Complete el campo Email",
+            icon: "error"
+        });
+        return false;
+    }
+
+    if (campoClave == "") {
+        Swal.fire({
+            title: "ERROR",
+            text: "Complete el campo Clave",
+            icon: "error"
+        });
+        return false;
+    }
+}
+document.getElementById("btnForm").addEventListener("click",validarFormulario); */
