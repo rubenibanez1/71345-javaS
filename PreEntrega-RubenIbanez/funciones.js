@@ -71,7 +71,7 @@ function validarFormulario() {
     let campoClave = document.getElementById("clave").value;
 
     if (campoEmail == "") {
-        Toastify({
+        Swal.fire({
             title: "ERROR",
             text: "Complete el campo Email",
             duration: 3000,
@@ -86,7 +86,7 @@ function validarFormulario() {
     }    
 
     if (campoClave == "") {
-        Toastify({
+        Swal.fire({
             title: "ERROR",
             text: "Complete el campo Email",
             duration: 3000,
@@ -99,7 +99,7 @@ function validarFormulario() {
         }).showToast();
         return false;
     }
-    Toastify({
+    Swal.fire({
         text: "Deseas guardar los datos para proximas compras?",
         duration: 3000,
         icon: "top",
@@ -128,7 +128,7 @@ function guardarDatos() {
     let campoEmail = document.getElementById("clave").value; */
     localStorage.setItem("datosUsuario", JSON.stringify({email:campoEmail, clave:campoClave}));
 }
-document.getElementById("btnForm").addEventListener("click",validarFormulario);
+document.getElementById("btnForm").addEventListener("click", validarFormulario);
 
 
 
